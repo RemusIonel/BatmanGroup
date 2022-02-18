@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
     float horPos;
     float verPos;
     Vector2 velocity;
-    float speed = 4f;
-    float gravity = -9.81f;
+    float speed = 15f;
+    float gravity = -300f;
     float jumpHeight = 2f;
     // Start is called before the first frame update
     void Start()
@@ -22,12 +22,17 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         horPos = Input.GetAxisRaw("Horizontal");
+        playerRB.velocity = new Vector2(horPos * speed, verPos);
         Jump();
 
     }
 
     void Jump()
     {
-       
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            print("jump");
+            playerRB.AddForce(transform.up * 18000f);
+        }
     }
 }
